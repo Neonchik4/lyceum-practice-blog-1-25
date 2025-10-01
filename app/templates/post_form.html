@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Форма поста - Simple Blog{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="/static/css/form.css"/>
+<h1>{% if post %}Редактировать пост{% else %}Создать пост{% endif %}</h1>
+<form class="form" action="{{ action }}" method="post">
+  <label>Заголовок<input name="title" required value="{{ post.title if post }}"></label>
+  <label>Содержимое<textarea name="content" required>{{ post.content if post }}</textarea></label>
+  <label>Автор
+    <select name="authorId" required>
+      {% for u in users %}
+        <option value="{{ u.id }}" {% if post and post.authorId==u.id %}selected{% endif %}>{{ u.login }} ({{ u.email }})</option>
+      {% endfor %}
+    </select>
+  </label>
+  <div class="form-actions">
+    <button type="submit">Сохранить</button>
+    <a class="cancel" href="/">Отмена</a>
+  </div>
+</form>
+{% endblock %}

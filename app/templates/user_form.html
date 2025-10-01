@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Создать пользователя - Simple Blog{% endblock %}
+{% block content %}
+    <link rel="stylesheet" href="/static/css/form.css"/>
+    <h1>Создать пользователя</h1>
+    <form class="form" action="{{ action }}" method="post">
+        <label>Электронная почта<input name="email" type="email" required></label>
+        <label>Логин<input name="login" required></label>
+        <label>Пароль<input name="password" type="password" required minlength="3"></label>
+        <div class="form-actions">
+            <button type="submit">Создать</button>
+            <a class="cancel" href="/">Отмена</a>
+        </div>
+    </form>
+{% endblock %}

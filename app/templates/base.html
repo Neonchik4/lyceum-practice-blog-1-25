@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>{% block title %}Blog{% endblock %}</title>
+</head>
+<body>
+<header class="site-header">
+    <div class="container">
+        <a class="logo" href="/">Simple Blog</a>
+        <nav class="nav">
+            <a href="/">Главная</a>
+            <a href="/posts/new">Создать пост</a>
+            <a href="/users/new">Создать пользователя</a>
+        </nav>
+    </div>
+</header>
+<main class="container">
+    {% block content %}{% endblock %}
+</main>
+</body>
+</html>

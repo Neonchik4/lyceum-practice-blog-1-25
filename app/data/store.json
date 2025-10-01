@@ -1,0 +1,23 @@
+{
+  "users": {
+    "1": {
+      "id": 1,
+      "email": "van@a",
+      "login": "uvicorn app.main:app --reload",
+      "password": "uvicorn app.main:app --reload",
+      "createdAt": "2025-09-30T10:19:44.211253",
+      "updatedAt": "2025-09-30T10:19:44.211253"
+    },
+    "2": {
+      "id": 2,
+      "email": "hh23@a",
+      "login": "hh23@a",
+      "password": "hh23@a",
+      "createdAt": "2025-09-30T10:40:15.495459",
+      "updatedAt": "2025-09-30T10:40:15.495459"
+    }
+  },
+  "posts": {},
+  "next_user_id": 3,
+  "next_post_id": 9
+}
