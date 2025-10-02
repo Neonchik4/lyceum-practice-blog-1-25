@@ -1,15 +1,25 @@
 {% extends "base.html" %}
-{% block title %}Создать пользователя - Simple Blog{% endblock %}
+{% block title %}Создать пользователя - Блог{% endblock %}
 {% block content %}
-    <link rel="stylesheet" href="/static/css/form.css"/>
-    <h1>Создать пользователя</h1>
+<div class="card shadow-sm p-4">
+    <h1 class="mb-4">Создать пользователя</h1>
     <form class="form" action="{{ action }}" method="post">
-        <label>Электронная почта<input name="email" type="email" required></label>
-        <label>Логин<input name="login" required></label>
-        <label>Пароль<input name="password" type="password" required minlength="3"></label>
-        <div class="form-actions">
-            <button type="submit">Создать</button>
-            <a class="cancel" href="/">Отмена</a>
+        <div class="mb-3">
+            <label class="form-label">Электронная почта</label>
+            <input class="form-control" name="email" type="email" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Логин</label>
+            <input class="form-control" name="login" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Пароль</label>
+            <input class="form-control" name="password" type="password" required minlength="3">
+        </div>
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary w-100">Создать</button>
+            <a class="btn btn-secondary w-100" href="/">Отмена</a>
         </div>
     </form>
+</div>
 {% endblock %}

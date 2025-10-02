@@ -15,9 +15,34 @@
       "password": "hh23@a",
       "createdAt": "2025-09-30T10:40:15.495459",
       "updatedAt": "2025-09-30T10:40:15.495459"
+    },
+    "3": {
+      "id": 3,
+      "email": "22@2",
+      "login": "22",
+      "password": "123",
+      "createdAt": "2025-10-01T20:40:38.868288",
+      "updatedAt": "2025-10-01T20:40:38.868288"
+    },
+    "4": {
+      "id": 4,
+      "email": "hgffhfg@a",
+      "login": "van22",
+      "password": "123",
+      "createdAt": "2025-10-02T08:31:05.087835",
+      "updatedAt": "2025-10-02T08:31:05.087835"
     }
   },
-  "posts": {},
-  "next_user_id": 3,
-  "next_post_id": 9
+  "posts": {
+    "12": {
+      "id": 12,
+      "authorId": 1,
+      "title": "34",
+      "content": "34",
+      "createdAt": "2025-10-02T08:41:45.181064",
+      "updatedAt": "2025-10-02T08:41:45.181064"
+    }
+  },
+  "next_user_id": 5,
+  "next_post_id": 13
 }
