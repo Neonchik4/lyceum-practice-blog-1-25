@@ -1,0 +1,15 @@
+.post-detail {
+    background: #fff;
+    border-radius: 8px;
+}
+
+.post-meta {
+    font-size: 1.35rem;
+    color: #6c757d;
+    margin-bottom: 1rem;
+}
+
+.post-content {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}

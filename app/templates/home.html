@@ -1,14 +1,15 @@
 {% extends "base.html" %}
 {% block title %}Главная - Блог{% endblock %}
 {% block content %}
+<link rel="stylesheet" href="/static/css/home.css"/>
 <h1 class="mb-4">Посты</h1>
 {% if posts %}
     <div class="row g-3">
         {% for post in posts %}
             <div class="col-12">
-                <div class="card shadow-sm p-3">
-                    <h2 class="card-title">{{ post.title }}</h2>
-                    <div class="text-muted mb-2">
+                <div class="card shadow-sm p-3 post-card">
+                    <h2 class=card-title">{{ post.title }}</h2>
+                    <div class="post-meta">
                         Автор: {{ post.authorLogin }} |
                         Создано: {{ post.createdAt.split('T')[0] }}
                     </div>
@@ -16,7 +17,7 @@
                     <div class="d-flex gap-2">
                         <a href="/posts/{{ post.id }}" class="btn btn-primary">Открыть</a>
                         <a href="/posts/{{ post.id }}/edit" class="btn btn-warning">Редактировать</a>
-                        <form method="post" action="/posts/{{ post.id }}/delete" style="display:inline;">
+                        <form method="post" action="/posts/{{ post.id }}/delete">
                             <button type="submit" class="btn btn-danger">Удалить</button>
                         </form>
                     </div>

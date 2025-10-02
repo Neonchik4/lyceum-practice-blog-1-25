@@ -34,15 +34,15 @@
     }
   },
   "posts": {
-    "12": {
-      "id": 12,
+    "14": {
+      "id": 14,
       "authorId": 1,
-      "title": "34",
-      "content": "34",
-      "createdAt": "2025-10-02T08:41:45.181064",
-      "updatedAt": "2025-10-02T08:41:45.181064"
+      "title": "чсмсчмч",
+      "content": "777",
+      "createdAt": "2025-10-02T08:44:17.210004",
+      "updatedAt": "2025-10-02T09:04:43.005840"
     }
   },
   "next_user_id": 5,
-  "next_post_id": 13
+  "next_post_id": 15
 }

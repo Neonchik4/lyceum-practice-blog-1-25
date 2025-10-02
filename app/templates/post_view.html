@@ -1,19 +1,20 @@
 {% extends "base.html" %}
 {% block title %}{{ post.title }} - Блог{% endblock %}
 {% block content %}
-    <article class="card shadow-sm p-4">
-        <h1 class="mb-3">{{ post.title }}</h1>
-        <div class="text-muted mb-3">
-            Автор: {% if author %}{{ author.login }}{% else %}Неизвестно{% endif %} |
-            Создано: {{ post.createdAt.split('T')[0] }}
-        </div>
-        <div class="mb-3">{{ post.content }}</div>
-        <div class="d-flex gap-2">
-            <a class="btn btn-warning" href="/posts/{{ post.id }}/edit">Редактировать</a>
-            <form action="/posts/{{ post.id }}/delete" method="post" style="display:inline">
-                <button class="btn btn-danger" type="submit">Удалить</button>
-            </form>
-            <a class="btn btn-secondary" href="/">Назад</a>
-        </div>
-    </article>
+<link rel="stylesheet" href="/static/css/post_view.css"/>
+<article class="card shadow-sm p-4 post-detail">
+    <h1 class="mb-3">{{ post.title }}</h1>
+    <div class="post-meta">
+        Автор: {% if author %}{{ author.login }}{% else %}Неизвестно{% endif %} |
+        Создано: {{ post.createdAt.split('T')[0] }}
+    </div>
+    <div class="post-content">{{ post.content }}</div>
+    <div class="d-flex gap-2">
+        <a class="btn btn-warning" href="/posts/{{ post.id }}/edit">Редактировать</a>
+        <form action="/posts/{{ post.id }}/delete" method="post">
+            <button class="btn btn-danger" type="submit">Удалить</button>
+        </form>
+        <a class="btn btn-secondary" href="/">Назад</a>
+    </div>
+</article>
 {% endblock %}

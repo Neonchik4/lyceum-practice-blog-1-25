@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 {% block title %}Создать пользователя - Блог{% endblock %}
 {% block content %}
-<div class="card shadow-sm p-4">
+<link rel="stylesheet" href="/static/css/user_form.css"/>
+<div class="card shadow-sm p-4 form-card">
     <h1 class="mb-4">Создать пользователя</h1>
-    <form class="form" action="{{ action }}" method="post">
+    <form action="{{ action }}" method="post">
         <div class="mb-3">
             <label class="form-label">Электронная почта</label>
             <input class="form-control" name="email" type="email" required>
