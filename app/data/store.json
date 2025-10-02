@@ -2,47 +2,14 @@
   "users": {
     "1": {
       "id": 1,
-      "email": "van@a",
-      "login": "uvicorn app.main:app --reload",
-      "password": "uvicorn app.main:app --reload",
-      "createdAt": "2025-09-30T10:19:44.211253",
-      "updatedAt": "2025-09-30T10:19:44.211253"
-    },
-    "2": {
-      "id": 2,
-      "email": "hh23@a",
-      "login": "hh23@a",
-      "password": "hh23@a",
-      "createdAt": "2025-09-30T10:40:15.495459",
-      "updatedAt": "2025-09-30T10:40:15.495459"
-    },
-    "3": {
-      "id": 3,
-      "email": "22@2",
-      "login": "22",
-      "password": "123",
-      "createdAt": "2025-10-01T20:40:38.868288",
-      "updatedAt": "2025-10-01T20:40:38.868288"
-    },
-    "4": {
-      "id": 4,
-      "email": "hgffhfg@a",
-      "login": "van22",
-      "password": "123",
-      "createdAt": "2025-10-02T08:31:05.087835",
-      "updatedAt": "2025-10-02T08:31:05.087835"
+      "email": "pet@a",
+      "login": "pet@a",
+      "password": "pet@a",
+      "createdAt": "2025-10-02T10:45:01.301792",
+      "updatedAt": "2025-10-02T10:45:01.301792"
     }
   },
-  "posts": {
-    "14": {
-      "id": 14,
-      "authorId": 1,
-      "title": "чсмсчмч",
-      "content": "777",
-      "createdAt": "2025-10-02T08:44:17.210004",
-      "updatedAt": "2025-10-02T09:04:43.005840"
-    }
-  },
-  "next_user_id": 5,
-  "next_post_id": 15
+  "posts": {},
+  "next_user_id": 2,
+  "next_post_id": 1
 }

@@ -78,7 +78,21 @@ async def edit_post(
 @router.post("/posts/{post_id}/delete")
 async def delete_post_form(post_id: int):
     async with storage.lock:
-        await storage.delete_post(post_id)
+        removed = await storage.delete_post(post_id)
+        if removed is None:
+            await storage.save_to_file()
+            return RedirectResponse(url="/", status_code=303)
+        posts_items = sorted(storage.posts.items(), key=lambda item: int(item[0]))
+        new_posts = {}
+        new_id = 1
+        for _, post in posts_items:
+            post_copy = post.copy()
+            post_copy["id"] = new_id
+            new_posts[new_id] = post_copy
+            new_id += 1
+        storage.posts.clear()
+        storage.posts.update(new_posts)
+        storage.next_post_id = new_id
         await storage.save_to_file()
     return RedirectResponse(url="/", status_code=303)
 

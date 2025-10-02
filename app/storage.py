@@ -10,53 +10,50 @@ posts: Dict[int, Dict[str, Any]] = {}
 next_user_id = 1
 next_post_id = 1
 
+
 def _now_iso():
     return datetime.utcnow().isoformat()
 
+
 async def load_from_file():
     global users, posts, next_user_id, next_post_id
-    if not os.path.exists(store_path):
-        with open(store_path, "w", encoding="utf-8") as f:
-            json.dump({}, f)
-        users = {}
-        posts = {}
-        next_user_id = 1
-        next_post_id = 1
-        return
-    try:
-        with open(store_path, "r", encoding="utf-8") as f:
-            data = json.load(f)
-    except Exception:
-        data = {}
-    raw_users = data.get("users") or {}
-    raw_posts = data.get("posts") or {}
-    users = {int(k): v for k, v in raw_users.items()}
-    posts = {int(k): v for k, v in raw_posts.items()}
-    if users:
-        next_user_id = max(users.keys()) + 1
-    else:
-        next_user_id = int(data.get("next_user_id", 1))
-    if posts:
-        next_post_id = max(posts.keys()) + 1
-    else:
-        next_post_id = int(data.get("next_post_id", 1))
+    os.makedirs(os.path.dirname(store_path), exist_ok=True)
+    users = {}
+    posts = {}
+    next_user_id = 1
+    next_post_id = 1
+    with open(store_path, "w", encoding="utf-8") as f:
+        json.dump({
+            "users": {},
+            "posts": {},
+            "next_user_id": next_user_id,
+            "next_post_id": next_post_id
+        }, f, ensure_ascii=False, indent=2)
+
 
 async def save_to_file():
+    global next_user_id, next_post_id
+    os.makedirs(os.path.dirname(store_path), exist_ok=True)
     tmp_path = store_path + ".tmp"
+    computed_next_user = max(users.keys()) + 1 if users else 1
+    computed_next_post = max(posts.keys()) + 1 if posts else 1
     data = {
         "users": users,
         "posts": posts,
-        "next_user_id": next_user_id,
-        "next_post_id": next_post_id
+        "next_user_id": computed_next_user,
+        "next_post_id": computed_next_post
     }
     with open(tmp_path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
     os.replace(tmp_path, store_path)
+    next_user_id = computed_next_user
+    next_post_id = computed_next_post
+
 
 async def create_user(payload: dict):
     global next_user_id
-    uid = next_user_id
-    next_user_id += 1
+    uid = max(users.keys()) + 1 if users else 1
+    next_user_id = uid + 1
     now = _now_iso()
     users[uid] = {
         "id": uid,
@@ -68,11 +65,14 @@ async def create_user(payload: dict):
     }
     return users[uid]
 
+
 async def get_user(uid: int):
     return users.get(uid)
 
+
 async def list_users():
     return list(users.values())
+
 
 async def update_user(uid: int, payload: dict):
     user = users.get(uid)
@@ -87,13 +87,18 @@ async def update_user(uid: int, payload: dict):
     user["updatedAt"] = _now_iso()
     return user
 
+
 async def delete_user(uid: int):
-    return users.pop(uid, None)
+    removed = users.pop(uid, None)
+    global next_user_id
+    next_user_id = max(users.keys()) + 1 if users else 1
+    return removed
+
 
 async def create_post(payload: dict):
     global next_post_id
-    pid = next_post_id
-    next_post_id += 1
+    pid = max(posts.keys()) + 1 if posts else 1
+    next_post_id = pid + 1
     now = _now_iso()
     posts[pid] = {
         "id": pid,
@@ -105,11 +110,14 @@ async def create_post(payload: dict):
     }
     return posts[pid]
 
+
 async def get_post(pid: int):
     return posts.get(pid)
 
+
 async def list_posts():
     return list(posts.values())
+
 
 async def update_post(post_id: int, data: dict):
     post = posts.get(post_id)
@@ -123,6 +131,8 @@ async def update_post(post_id: int, data: dict):
     return post
 
 
-
 async def delete_post(pid: int):
-    return posts.pop(pid, None)
+    removed = posts.pop(pid, None)
+    global next_post_id
+    next_post_id = max(posts.keys()) + 1 if posts else 1
+    return removed
