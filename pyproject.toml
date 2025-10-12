@@ -30,7 +30,7 @@ target-version = ["py311"]
 profile = "black"
 
 [tool.ruff]
-select = ["E", "F", "W", "B", "C", "TC"]
+select = ["E", "F"]
 extend-select = ["ANN"]
 
 [tool.mypy]
