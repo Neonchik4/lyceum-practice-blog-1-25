@@ -23,4 +23,4 @@ repos:
         name: mypy
         entry: poetry run mypy
         language: system
-        types: [python]
+        types: [ python ]

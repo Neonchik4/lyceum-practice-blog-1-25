@@ -1,6 +1,9 @@
+from typing import Any, List
+
 from fastapi import APIRouter, Form, Request
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
+from starlette.responses import Response
 
 from app import storage
 
@@ -9,10 +12,10 @@ templates = Jinja2Templates(directory="app/templates")
 
 
 @router.get("/")
-async def home(request: Request):
-    posts = await storage.list_posts()
+async def home(request: Request) -> Response:
+    posts: List[dict[str, Any]] = await storage.list_posts()
     posts_sorted = sorted(posts, key=lambda p: p["createdAt"], reverse=True)
-    posts_with_author = []
+    posts_with_author: List[dict[str, Any]] = []
     for p in posts_sorted:
         author = await storage.get_user(p["authorId"])
         p_copy = p.copy()
@@ -24,7 +27,7 @@ async def home(request: Request):
 
 
 @router.get("/posts/new")
-async def new_post_form(request: Request):
+async def new_post_form(request: Request) -> Response:
     users = await storage.list_users()
     return templates.TemplateResponse(
         "post_form.html", {"request": request, "users": users, "action": "/posts/new"}
@@ -34,7 +37,7 @@ async def new_post_form(request: Request):
 @router.post("/posts/new")
 async def create_post_form(
     title: str = Form(...), content: str = Form(...), authorId: int = Form(...)
-):
+) -> RedirectResponse:
     async with storage.lock:
         author = await storage.get_user(authorId)
         if not author:
@@ -47,7 +50,7 @@ async def create_post_form(
 
 
 @router.get("/posts/{post_id}")
-async def view_post(request: Request, post_id: int):
+async def view_post(request: Request, post_id: int) -> Response:
     post = await storage.get_post(post_id)
     if not post:
         return RedirectResponse(url="/", status_code=303)
@@ -58,7 +61,7 @@ async def view_post(request: Request, post_id: int):
 
 
 @router.get("/posts/{post_id}/edit")
-async def edit_post_form(request: Request, post_id: int):
+async def edit_post_form(request: Request, post_id: int) -> Response:
     post = await storage.get_post(post_id)
     if not post:
         return RedirectResponse(url="/", status_code=303)
@@ -79,7 +82,7 @@ async def edit_post(
     title: str = Form(...),
     content: str = Form(...),
     authorId: int = Form(...),
-):
+) -> RedirectResponse:
     async with storage.lock:
         p = await storage.update_post(
             post_id, {"title": title, "content": content, "authorId": authorId}
@@ -91,14 +94,14 @@ async def edit_post(
 
 
 @router.post("/posts/{post_id}/delete")
-async def delete_post_form(post_id: int):
+async def delete_post_form(post_id: int) -> RedirectResponse:
     async with storage.lock:
         removed = await storage.delete_post(post_id)
         if removed is None:
             await storage.save_to_file()
             return RedirectResponse(url="/", status_code=303)
         posts_items = sorted(storage.posts.items(), key=lambda item: int(item[0]))
-        new_posts = {}
+        new_posts: dict[int, dict[str, Any]] = {}
         new_id = 1
         for _, post in posts_items:
             post_copy = post.copy()
@@ -113,7 +116,7 @@ async def delete_post_form(post_id: int):
 
 
 @router.get("/users/new")
-async def new_user_form(request: Request):
+async def new_user_form(request: Request) -> Response:
     return templates.TemplateResponse(
         "user_form.html", {"request": request, "action": "/users/new"}
     )
@@ -122,7 +125,7 @@ async def new_user_form(request: Request):
 @router.post("/users/new")
 async def create_user_form(
     email: str = Form(...), login: str = Form(...), password: str = Form(...)
-):
+) -> RedirectResponse:
     async with storage.lock:
         await storage.create_user(
             {"email": email, "login": login, "password": password}

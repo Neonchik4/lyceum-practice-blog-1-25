@@ -22,11 +22,11 @@ app.include_router(views_router)
 
 
 @app.on_event("startup")
-async def startup_event():
+async def startup_event() -> None:
     await storage.load_from_file()
     storage.lock = asyncio.Lock()
 
 
 @app.on_event("shutdown")
-async def shutdown_event():
+async def shutdown_event() -> None:
     await storage.save_to_file()
