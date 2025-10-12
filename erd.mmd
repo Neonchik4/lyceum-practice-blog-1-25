@@ -1,0 +1,53 @@
+erDiagram
+    USERS {
+        UUID id PK
+        VARCHAR username
+        VARCHAR email
+        VARCHAR full_name
+        BOOLEAN is_active
+        TIMESTAMP created_at
+    }
+    POSTS {
+        UUID id PK
+        UUID author_id FK
+        VARCHAR title
+        VARCHAR slug
+        TEXT content
+        VARCHAR status
+        TIMESTAMP published_at
+    }
+    TAGS {
+        UUID id PK
+        VARCHAR name
+    }
+    POST_TAGS {
+        UUID post_id FK
+        UUID tag_id FK
+    }
+    FAVORITES {
+        UUID user_id FK
+        UUID post_id FK
+        TIMESTAMP saved_at
+    }
+    COMMENTS {
+        UUID id PK
+        UUID post_id FK
+        UUID author_id FK
+        UUID parent_comment_id FK
+        TEXT content
+    }
+    SUBSCRIPTIONS {
+        UUID subscriber_id FK
+        UUID author_id FK
+        TIMESTAMP created_at
+    }
+
+    USERS ||--o{ POSTS : "writes"
+    POSTS ||--o{ POST_TAGS : "has"
+    TAGS ||--o{ POST_TAGS : "tags"
+    USERS ||--o{ FAVORITES : "saves"
+    POSTS ||--o{ FAVORITES : "is_saved"
+    POSTS ||--o{ COMMENTS : "has"
+    USERS ||--o{ COMMENTS : "writes"
+    USERS ||--o{ SUBSCRIPTIONS : "subscribes"
+    USERS ||--o{ SUBSCRIPTIONS : "is_subscribed_to"

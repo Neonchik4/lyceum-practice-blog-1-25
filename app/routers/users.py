@@ -1,8 +1,9 @@
-from fastapi import APIRouter, HTTPException
 from typing import List
+
+from fastapi import APIRouter, HTTPException, status
+
 from app import storage
-from app.models import UserCreate, UserUpdate, UserOut
-from fastapi import status
+from app.models import UserCreate, UserOut, UserUpdate
 
 router = APIRouter()
 

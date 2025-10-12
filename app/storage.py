@@ -1,8 +1,8 @@
-import json
-from datetime import datetime
-from typing import Dict, Any
-import os
 import asyncio
+import json
+import os
+from datetime import datetime
+from typing import Any, Dict
 
 store_path = "app/data/store.json"
 users: Dict[int, Dict[str, Any]] = {}
@@ -23,12 +23,17 @@ async def load_from_file():
     next_user_id = 1
     next_post_id = 1
     with open(store_path, "w", encoding="utf-8") as f:
-        json.dump({
-            "users": {},
-            "posts": {},
-            "next_user_id": next_user_id,
-            "next_post_id": next_post_id
-        }, f, ensure_ascii=False, indent=2)
+        json.dump(
+            {
+                "users": {},
+                "posts": {},
+                "next_user_id": next_user_id,
+                "next_post_id": next_post_id,
+            },
+            f,
+            ensure_ascii=False,
+            indent=2,
+        )
 
 
 async def save_to_file():
@@ -41,7 +46,7 @@ async def save_to_file():
         "users": users,
         "posts": posts,
         "next_user_id": computed_next_user,
-        "next_post_id": computed_next_post
+        "next_post_id": computed_next_post,
     }
     with open(tmp_path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
@@ -61,7 +66,7 @@ async def create_user(payload: dict):
         "login": payload["login"],
         "password": payload["password"],
         "createdAt": now,
-        "updatedAt": now
+        "updatedAt": now,
     }
     return users[uid]
 
@@ -106,7 +111,7 @@ async def create_post(payload: dict):
         "title": payload["title"],
         "content": payload["content"],
         "createdAt": now,
-        "updatedAt": now
+        "updatedAt": now,
     }
     return posts[pid]
 

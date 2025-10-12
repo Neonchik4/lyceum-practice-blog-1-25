@@ -2,29 +2,29 @@
   "users": {
     "1": {
       "id": 1,
-      "email": "vanya@mail.smth",
-      "login": "vanya123",
-      "password": "vanya@mail.smth",
-      "createdAt": "2025-10-02T11:24:52.716672",
-      "updatedAt": "2025-10-02T11:24:52.716672"
+      "email": "12@a",
+      "login": "12@a",
+      "password": "12@a",
+      "createdAt": "2025-10-12T12:40:32.847664",
+      "updatedAt": "2025-10-12T12:40:32.847664"
     },
     "2": {
       "id": 2,
-      "email": "petya@a",
-      "login": "petya",
-      "password": "petya@a",
-      "createdAt": "2025-10-02T11:29:38.384625",
-      "updatedAt": "2025-10-02T11:29:38.384625"
+      "email": "342243@a",
+      "login": "354345",
+      "password": "53434",
+      "createdAt": "2025-10-12T12:40:43.096112",
+      "updatedAt": "2025-10-12T12:40:43.096112"
     }
   },
   "posts": {
     "1": {
       "id": 1,
-      "authorId": 2,
-      "title": "Пост1",
-      "content": "какое-то содержимое. что-то ещё",
-      "createdAt": "2025-10-02T11:25:40.825255",
-      "updatedAt": "2025-10-02T11:30:06.950648"
+      "authorId": 1,
+      "title": "675",
+      "content": "354",
+      "createdAt": "2025-10-12T12:40:48.746630",
+      "updatedAt": "2025-10-12T12:40:52.079717"
     }
   },
   "next_user_id": 3,
