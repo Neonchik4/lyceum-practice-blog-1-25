@@ -1,32 +1,6 @@
 {
-  "users": {
-    "1": {
-      "id": 1,
-      "email": "a@a",
-      "login": "a@a",
-      "password": "a@a",
-      "createdAt": "2025-10-12T15:34:42.290279",
-      "updatedAt": "2025-10-12T15:34:42.290279"
-    },
-    "2": {
-      "id": 2,
-      "email": "a1@a",
-      "login": "a1@a",
-      "password": "a1@a",
-      "createdAt": "2025-10-12T15:47:22.816308",
-      "updatedAt": "2025-10-12T15:47:22.816308"
-    }
-  },
-  "posts": {
-    "1": {
-      "id": 1,
-      "authorId": 1,
-      "title": "354",
-      "content": "a1@a",
-      "createdAt": "2025-10-12T15:47:26.165823",
-      "updatedAt": "2025-10-12T15:51:28.841399"
-    }
-  },
-  "next_user_id": 3,
-  "next_post_id": 2
+  "users": {},
+  "posts": {},
+  "next_user_id": 1,
+  "next_post_id": 1
 }
