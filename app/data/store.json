@@ -2,31 +2,31 @@
   "users": {
     "1": {
       "id": 1,
-      "email": "132@a",
-      "login": "132@",
-      "password": "132@",
-      "createdAt": "2025-10-12T12:49:00.198083",
-      "updatedAt": "2025-10-12T12:49:00.198083"
+      "email": "a@a",
+      "login": "a@a",
+      "password": "a@a",
+      "createdAt": "2025-10-12T15:34:42.290279",
+      "updatedAt": "2025-10-12T15:34:42.290279"
+    },
+    "2": {
+      "id": 2,
+      "email": "a1@a",
+      "login": "a1@a",
+      "password": "a1@a",
+      "createdAt": "2025-10-12T15:47:22.816308",
+      "updatedAt": "2025-10-12T15:47:22.816308"
     }
   },
   "posts": {
     "1": {
       "id": 1,
       "authorId": 1,
-      "title": "654",
-      "content": "hfg",
-      "createdAt": "2025-10-12T12:49:03.163871",
-      "updatedAt": "2025-10-12T12:49:03.163871"
-    },
-    "2": {
-      "id": 2,
-      "authorId": 1,
-      "title": "ghf",
-      "content": "xvc",
-      "createdAt": "2025-10-12T12:49:05.630696",
-      "updatedAt": "2025-10-12T12:49:05.630696"
+      "title": "354",
+      "content": "a1@a",
+      "createdAt": "2025-10-12T15:47:26.165823",
+      "updatedAt": "2025-10-12T15:51:28.841399"
     }
   },
-  "next_user_id": 2,
-  "next_post_id": 3
+  "next_user_id": 3,
+  "next_post_id": 2
 }

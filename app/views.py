@@ -1,5 +1,3 @@
-from typing import Any, List
-
 from fastapi import APIRouter, Form, Request
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
@@ -13,9 +11,9 @@ templates = Jinja2Templates(directory="app/templates")
 
 @router.get("/")
 async def home(request: Request) -> Response:
-    posts: List[dict[str, Any]] = await storage.list_posts()
+    posts = await storage.list_posts()
     posts_sorted = sorted(posts, key=lambda p: p["createdAt"], reverse=True)
-    posts_with_author: List[dict[str, Any]] = []
+    posts_with_author = []
     for p in posts_sorted:
         author = await storage.get_user(p["authorId"])
         p_copy = p.copy()
@@ -101,7 +99,7 @@ async def delete_post_form(post_id: int) -> RedirectResponse:
             await storage.save_to_file()
             return RedirectResponse(url="/", status_code=303)
         posts_items = sorted(storage.posts.items(), key=lambda item: int(item[0]))
-        new_posts: dict[int, dict[str, Any]] = {}
+        new_posts = {}
         new_id = 1
         for _, post in posts_items:
             post_copy = post.copy()
